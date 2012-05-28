@@ -1,0 +1,51 @@
+!!! 5
+html
+  head
+    title jotter
+    link(rel='stylesheet', href='/stylesheets/cssreset-min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      h1
+        a(href='/') jotter
+      nav
+        a(class='left selected', href='javascript:void(0);') jot
+        a(class='left', href='javascript:void(0);') pin
+        a(class='right', id='post') post
+        //a(class='right', href='/help') help
+
+    div(id='main')
+      != body
+
+    footer
+      h1 notification area (未実装)
+
+    div(id='jotter')
+      div(class='back')
+      div(class='front')
+        h1 post
+          input(type='button', id='cancel', class='left', value='cancel')
+          input(type='submit', id='send', class='right', value='send')
+        label(for='from')
+          span From:
+          input(type='text', id='from')
+        label(for='head')
+          span Title:
+          input(type='text', id='head')
+        label(for='type')
+          span Type:
+          select(id='type')
+            option(value='text')  Text
+            option(value='link')  Link
+            option(value='image') Image
+            option(value='video') Video
+            option(value='audio') Audio
+        div(id='inlet')
+          input(id='input2', placeholder='URI')
+          textarea(id='input1', placeholder='Text')
+          a Currently, unwired binary data cannot post.
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='/javascripts/jquery.pjax.min.js')
+    script(src='/javascripts/jquery.isotope.min.js')
+    script(src='/javascripts/jotter.script.js')

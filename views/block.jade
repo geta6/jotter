@@ -1,0 +1,26 @@
+each item in items
+  - time = new Date(item.date * 1000)
+  - dots = [time.getYear()-100, time.getMonth()+1, time.getDate()].join('.')
+  - cols = [time.getHours(), time.getMinutes()>9?time.getMinutes():'0'+time.getMinutes()].join(':')
+  - pin = item.pinn ? 'pin' : 'unpin'
+  article(class='#{pin} type_#{item.type}', x-sort='#{item.pinn}#{item.date}', x-id='#{item.id}')
+    span(class='pinn #{pin}')
+    header
+      h1= item.head
+      div(class='thumb', style='background-image:url(/images/#{item.type}.png);')
+    div
+      p(class='type')
+        - if ('link' == item.type)
+          a(href='#{item.addr}', target='_blank') #{item.addr}
+        - if ('image' == item.type)
+          a(href='#{item.addr}', target='_blank')
+            img(src='#{item.addr}')
+        - if ('video' == item.type)
+          - video = item.addr.replace(/^(http:\/\/.*?)\/watch.*?v=(.*)$/g, '$1/embed/$2')
+          - video = video.replace(/&.*$/g, '')
+          iframe(src='#{video}', frameborder='0', allowfullscreen)
+
+      pre(class='body')= item.body
+    footer
+        div(class='left')= item.owns
+        div(class='right')= dots + ' ' + cols

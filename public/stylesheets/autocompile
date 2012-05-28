@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+MTIME=`stat -c %Y style.less`
+
+while [ true ]
+do
+  MTIME2=`stat -c %Y style.less`
+  if [ $MTIME != $MTIME2 ]; then
+    MTIME=$MTIME2
+    lessc --yui-compress style.less > style.css
+    echo less compiled on `date`
+  fi
+  sleep 1
+done
+

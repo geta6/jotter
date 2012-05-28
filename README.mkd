@@ -1,0 +1,23 @@
+# JOTTER
+
+
+## Require
+
+* nodejs
+* npm
+
+## Install
+
+~~~bash
+npm install
+node sqlitecreate.js
+~~~
+
+## Run
+
+~~~bash
+node app.js
+open -a Safari http://localhost:3000
+~~~
+
+### Only Run on WEBKIT
